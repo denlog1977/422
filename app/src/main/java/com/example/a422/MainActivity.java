@@ -5,17 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
-    int currentPosition = 0;
-    ArrayList<Product> products;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.listView);
 
-        products = new ArrayList<Product>();
+        ArrayList<Product> products = new ArrayList<Product>();
         products.add(new Product(1,2, "Танчик", R.drawable.tank));
         products.add(new Product(10,20, "Автомобильчик", R.drawable.am200));
         products.add(new Product(15,30, "Мотик", R.drawable.moto200));
@@ -44,15 +39,14 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 Toast.makeText(getApplicationContext(), "--- !!! setOnItemClickListener !!! ---", Toast.LENGTH_SHORT).show();
-
-//                Toast.makeText(getApplicationContext(), "Текущая позиция  = " + Integer.toString(currentPosition) + " Количество строк = " + Integer.toString(products.size()), Toast.LENGTH_SHORT).show();
-//                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
         });
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
-                Toast.makeText(getApplicationContext(), " OnItemLongClick " + Integer.toString(currentPosition), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "--- !!! setOnItemClickListener !!! ---", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), " !!! Позиция № " + Integer.toString(position), Toast.LENGTH_SHORT).show();
                 return false;
             }
 
