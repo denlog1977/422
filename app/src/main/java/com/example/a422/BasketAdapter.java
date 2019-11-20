@@ -5,8 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -16,7 +22,7 @@ public class BasketAdapter extends BaseAdapter {
     LayoutInflater layoutInflater;
     Context ctx;
 
-    BasketAdapter (Context context, ArrayList<Product> products) {
+    BasketAdapter(Context context, ArrayList<Product> products) {
         ctx = context;
         goods = products;
         layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -44,36 +50,46 @@ public class BasketAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         View view = convertView;
 
-        if (view == null)
-        {
-            view = layoutInflater.inflate(R.layout.basket_item, parent,false);
+        if (view == null) {
+            view = layoutInflater.inflate(R.layout.basket_item, parent, false);
         }
 
         Product product = getProduct(position);
 
+        ImageView imageView = (ImageView) view.findViewById(R.id.image);
+        imageView.setImageResource(product.image);
         ((TextView) (view.findViewById(R.id.name))).setText(product.name);
         ((TextView) (view.findViewById(R.id.price))).setText(Integer.toString(product.price) + ",00 руб.");
         ((TextView) (view.findViewById(R.id.quantity))).setText("Количество: " + Integer.toString(product.quantity) + " шт.");
-        ImageView imageView = (ImageView) view.findViewById(R.id.image);
-        imageView.setImageResource(product.image);
-//        CheckBox chekBox = (CheckBox) view.findViewById(R.id.selected);
-//        chekBox.setOnCheckedChangeListener(checkedChangeListener);
         ((TextView) (view.findViewById(R.id.name2))).setText("Дополнительное описание товара (" + product.name + ")");
         ((TextView) (view.findViewById(R.id.price2))).setText("Цена скидкой: " + Integer.toString(product.price));
         ((TextView) (view.findViewById(R.id.quantity2))).setText("Допустимое количество по акции: " + Integer.toString(product.quantity));
 
+        CheckBox chekBox = view.findViewById(R.id.selected);
+        chekBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Toast.makeText(buttonView.getContext(), "OnCheckedChangeListener строка № " + Integer.toString(position) + " isChecked=" + Boolean.toString(isChecked), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button buttonRemove = (Button) (view.findViewById(R.id.buttonRemove));
+        buttonRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goods.remove(position);
+                Toast.makeText(v.getContext(), "Удаление позиции № " + Integer.toString(position) + "\n\nОсталось строк: " + Integer.toString(goods.size()), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         return view;
+
     }
 
-//    OnCheckedChangeListener checkedChangeListener = new OnCheckedChangeListener() {
-//        @Override
-//        public void onCheckedChanged(RadioGroup group, int checkedId) {
-//
-//        }
-//    };
+
 }

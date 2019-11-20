@@ -36,46 +36,27 @@ public class MainActivity extends AppCompatActivity {
         products.add(new Product(6750,1, "Дорогая чувиха", R.drawable.a4));
         products.add(new Product(19990,0, "Всем чувихам Чувиха", R.drawable.chuvixa200));
 
-        BasketAdapter adapter = new BasketAdapter(this, products);
+        final BasketAdapter adapter = new BasketAdapter(this, products);
 
         listView.setAdapter(adapter);
 
-        Button buttonRemove = findViewById(R.id.buttonRemove);
-        buttonRemove.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
 
-//                View parent = (View) v.getParent();
-//                TextView priceTextView = parent.findViewById(R.id.price);
-//                String price = priceTextView .getText().toString();
-//                Toast.makeText(getApplicationContext(), "price = " + price, Toast.LENGTH_SHORT).show();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                Toast.makeText(getApplicationContext(), "--- !!! setOnItemClickListener !!! ---", Toast.LENGTH_SHORT).show();
 
-//                Toast.makeText(MainActivity.this
-//                        ,"- Удаление - позиции № " + Integer.toString(currentPosition)
-//                        ,Toast.LENGTH_LONG)
-//                        .show();
-
-                //products.remove(currentPosition);
-                //adapter.notifyDataSetChanged();
-
+//                Toast.makeText(getApplicationContext(), "Текущая позиция  = " + Integer.toString(currentPosition) + " Количество строк = " + Integer.toString(products.size()), Toast.LENGTH_SHORT).show();
+//                adapter.notifyDataSetChanged();
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-//                currentPosition =  position;
-////                adapter.notifyDataSetChanged();
-//                Toast.makeText(getApplicationContext(), "currentPosition = " + Integer.toString(currentPosition) + " --- productsSize --- " + Integer.toString(products.size()), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
-//                Toast.makeText(getApplicationContext(), " OnItemLongClick " + Integer.toString(currentPosition), Toast.LENGTH_SHORT).show();
-//                return false;
-//            }
-//
-//        });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
+                Toast.makeText(getApplicationContext(), " OnItemLongClick " + Integer.toString(currentPosition), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+        });
 
 
     }
