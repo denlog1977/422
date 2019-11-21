@@ -65,7 +65,7 @@ public class BasketAdapter extends BaseAdapter {
 
         ImageView imageView = view.findViewById(R.id.image);
         imageView.setImageResource(product.image);
-        ((TextView) (view.findViewById(R.id.name))).setText(product.name);
+        ((TextView) (view.findViewById(R.id.name))).setText(Integer.toString(position+1) + ". " + product.name);
         ((TextView) (view.findViewById(R.id.price))).setText(Integer.toString(product.price) + ",00 руб.");
         ((TextView) (view.findViewById(R.id.quantity))).setText("Количество: " + Integer.toString(product.quantity) + " шт.");
         ((TextView) (view.findViewById(R.id.name2))).setText("Дополнительное описание товара (" + product.name + ")");
@@ -76,7 +76,7 @@ public class BasketAdapter extends BaseAdapter {
         chekBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(buttonView.getContext(), "OnCheckedChangeListener строка № " + Integer.toString(position) + " isChecked=" + Boolean.toString(isChecked), Toast.LENGTH_SHORT).show();
+                Toast.makeText(buttonView.getContext(), "OnCheckedChangeListener строка № " + Integer.toString(position + 1) + " isChecked=" + Boolean.toString(isChecked), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -86,14 +86,14 @@ public class BasketAdapter extends BaseAdapter {
             public void onClick(View v) {
                 goods.remove(position);
                 notifyDataSetChanged();
-                Toast.makeText(v.getContext(), "Удаление позиции № " + Integer.toString(position) + "\n\nОсталось строк: " + Integer.toString(goods.size()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "Удаление позиции № " + Integer.toString(position + 1) + "\n\nОсталось строк: " + Integer.toString(goods.size()), Toast.LENGTH_SHORT).show();
             }
         });
 
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(ctx, " onLongClick Позиция № " + Integer.toString(position) + "\n\nНаименование товара:"  + product.getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, " onLongClick Позиция № " + Integer.toString(position + 1) + "\n\nНаименование товара:"  + product.getName(), Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -118,7 +118,7 @@ public class BasketAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ctx, " view onClick Позиция № " + Integer.toString(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, " view onClick Позиция № " + Integer.toString(position + 1), Toast.LENGTH_SHORT).show();
             }
         });
 
