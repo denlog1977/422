@@ -27,4 +27,12 @@ public class Product {
     public int getImage() {
         return image;
     }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }

@@ -103,13 +103,13 @@ public class BasketAdapter extends BaseAdapter {
             public void onClick(View v) {
 //                Toast.makeText(ctx, " imageView onClick Позиция № " + Integer.toString(position), Toast.LENGTH_SHORT).show();
 
-                Toast toast3 = Toast.makeText(ctx, product.getName(), Toast.LENGTH_LONG);
+                Toast toast3 = Toast.makeText(ctx, product.getName() + ". Цена " + product.getPrice() + ",00 руб.", Toast.LENGTH_LONG);
                 toast3.setGravity(Gravity.CENTER, 0, 0);
                 ImageView imageToast = new ImageView(ctx);
                 imageToast.setImageResource(product.getImage());
                 LinearLayout toastContainer = (LinearLayout) toast3.getView();
-                LinearLayout.LayoutParams linLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-                toastContainer.setLayoutParams(linLayoutParam);
+//                LinearLayout.LayoutParams linLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+//                toastContainer.setLayoutParams(linLayoutParam);
                 toastContainer.addView(imageToast, 0);
                 toast3.show();
             }
