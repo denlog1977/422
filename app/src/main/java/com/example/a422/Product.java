@@ -19,4 +19,12 @@ public class Product {
         this.quantity = quantity;
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getImage() {
+        return image;
+    }
 }

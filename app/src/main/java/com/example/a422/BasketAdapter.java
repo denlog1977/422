@@ -1,14 +1,17 @@
 package com.example.a422;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -58,9 +61,9 @@ public class BasketAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.basket_item, parent, false);
         }
 
-        Product product = getProduct(position);
+        final Product product = getProduct(position);
 
-        ImageView imageView = (ImageView) view.findViewById(R.id.image);
+        ImageView imageView = view.findViewById(R.id.image);
         imageView.setImageResource(product.image);
         ((TextView) (view.findViewById(R.id.name))).setText(product.name);
         ((TextView) (view.findViewById(R.id.price))).setText(Integer.toString(product.price) + ",00 руб.");
@@ -84,6 +87,38 @@ public class BasketAdapter extends BaseAdapter {
                 goods.remove(position);
                 notifyDataSetChanged();
                 Toast.makeText(v.getContext(), "Удаление позиции № " + Integer.toString(position) + "\n\nОсталось строк: " + Integer.toString(goods.size()), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(ctx, " onLongClick Позиция № " + Integer.toString(position) + "\n\nНаименование товара:"  + product.getName(), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(ctx, " imageView onClick Позиция № " + Integer.toString(position), Toast.LENGTH_SHORT).show();
+
+                Toast toast3 = Toast.makeText(ctx, product.getName(), Toast.LENGTH_LONG);
+                toast3.setGravity(Gravity.CENTER, 0, 0);
+                ImageView imageToast = new ImageView(ctx);
+                imageToast.setImageResource(product.getImage());
+                LinearLayout toastContainer = (LinearLayout) toast3.getView();
+                LinearLayout.LayoutParams linLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                toastContainer.setLayoutParams(linLayoutParam);
+                toastContainer.addView(imageToast, 0);
+                toast3.show();
+            }
+        });
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ctx, " view onClick Позиция № " + Integer.toString(position), Toast.LENGTH_SHORT).show();
             }
         });
 

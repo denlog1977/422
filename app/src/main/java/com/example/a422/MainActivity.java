@@ -42,13 +42,13 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 //
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
-                Toast.makeText(getApplicationContext(), " LongClick Позиция № " + Integer.toString(position) + "\n\nНаименование товара:"  + products.get(position).name, Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-        });
+//        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
+//                Toast.makeText(getApplicationContext(), " LongClick Позиция № " + Integer.toString(position) + "\n\nНаименование товара:"  + products.get(position).getName(), Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//
+//        });
 
 
     }
