@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.listView);
 
-        ArrayList<Product> products = new ArrayList<Product>();
+        final ArrayList<Product> products = new ArrayList<Product>();
         products.add(new Product(1,2, "Танчик", R.drawable.tank));
         products.add(new Product(10,20, "Автомобильчик", R.drawable.am200));
         products.add(new Product(15,30, "Мотик", R.drawable.moto200));
@@ -36,17 +36,15 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Toast.makeText(getApplicationContext(), "--- !!! setOnItemClickListener !!! ---", Toast.LENGTH_SHORT).show();
-                adapter.notifyDataSetChanged();
-            }
-        });
-
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+//                Toast.makeText(getApplicationContext(), " listView setOnItemClickListener Позиция № " + Integer.toString(position), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
-//                Toast.makeText(getApplicationContext(), "--- !!! setOnItemClickListener !!! ---", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), " !!! Позиция № " + Integer.toString(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), " LongClick Позиция № " + Integer.toString(position) + "\n\nНаименование товара:"  + products.get(position).name, Toast.LENGTH_SHORT).show();
                 return false;
             }
 

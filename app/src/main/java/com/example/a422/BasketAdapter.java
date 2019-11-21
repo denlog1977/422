@@ -66,7 +66,7 @@ public class BasketAdapter extends BaseAdapter {
         ((TextView) (view.findViewById(R.id.price))).setText(Integer.toString(product.price) + ",00 руб.");
         ((TextView) (view.findViewById(R.id.quantity))).setText("Количество: " + Integer.toString(product.quantity) + " шт.");
         ((TextView) (view.findViewById(R.id.name2))).setText("Дополнительное описание товара (" + product.name + ")");
-        ((TextView) (view.findViewById(R.id.price2))).setText("Цена скидкой: " + Integer.toString(product.price));
+        ((TextView) (view.findViewById(R.id.price2))).setText("Цена со скидкой: " + Integer.toString(product.price));
         ((TextView) (view.findViewById(R.id.quantity2))).setText("Допустимое количество по акции: " + Integer.toString(product.quantity));
 
         CheckBox chekBox = view.findViewById(R.id.selected);
@@ -82,10 +82,10 @@ public class BasketAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 goods.remove(position);
+                notifyDataSetChanged();
                 Toast.makeText(v.getContext(), "Удаление позиции № " + Integer.toString(position) + "\n\nОсталось строк: " + Integer.toString(goods.size()), Toast.LENGTH_SHORT).show();
             }
         });
-
 
         return view;
 
