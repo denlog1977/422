@@ -6,6 +6,7 @@ public class Product {
     int quantity;
     String name;
     int image;
+    boolean isChecked;
 
     public Product(int price, int quantity, String name, int image) {
         this.price = price;
@@ -34,5 +35,13 @@ public class Product {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 }
